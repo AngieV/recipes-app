@@ -6,11 +6,11 @@ import { Link, useParams } from "react-router-dom";
 function Cuisine() {
 
     const [cuisine, setCuisine] = useState([]);
-    let params = useParams;
+    let params = useParams();
 
 
     const getCuisine = async (name) => {
-        const data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=5b34d0b033b54641a5d9d5422c0c44e3&cuisine${name}&number=9`)
+        const data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.RECIPES_API_KEY}&cuisine=${name}&number=9`)
         const recipes = await data.json();
         setCuisine(recipes.results);
     }
@@ -25,8 +25,9 @@ function Cuisine() {
             {cuisine.map((item) => {
                 return (
                     <Card key={item.id}>
+
                         <img src={item.image} alt="" />
-                        <h4> {item.image}</h4>
+                        <h4> {item.title}</h4>
                     </Card>
                 )
             }
@@ -39,7 +40,7 @@ function Cuisine() {
 const Grid = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-    grid-grap: 3rem;
+    grid-gap: 3rem;
 `;
 const Card = styled.div`
     img {
