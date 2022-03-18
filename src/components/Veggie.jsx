@@ -20,10 +20,7 @@ function Veggie() {
         if (check) {
             setVeggie(JSON.parse(check));//parse back from strings to array
         } else {
-            //const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.RECIPES_API_KEY}&number=9`)
-            const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.RECIPES_API_KEY}&number=9&tags=vegetarian`)
-            //&number=9 (optional)returns number of recipes
-            //restart localhost of "not authorized"
+            const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_RECIPES_API_KEY}&number=9`)
             const data = await api.json();
             localStorage.setItem("veggie", JSON.stringify(data.recipes)); //localStorage can only saves strings
             setVeggie(data.recipes);
@@ -39,9 +36,9 @@ function Veggie() {
                     options={{
                         perPage: 3,
                         arrows: false,
-                        pagination: true,
+                        pagination: false,
                         drag: "free",
-                        gap: "1rem",
+                        gap: "3rem",
                     }}>
                     {veggie.map((recipe) => {
                         return (
