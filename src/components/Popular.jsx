@@ -18,7 +18,7 @@ function Popular() {
         if (check) {
             setPopular(JSON.parse(check));//parse back from strings to array
         } else {
-            const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_RECIPES_API_KEY}&number=9`)
+            const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_RECIPES_API_KEY}&number=15`)
             const data = await api.json();
             localStorage.setItem("popular", JSON.stringify(data.recipes)); //localStorage can only saves strings
             setPopular(data.recipes);
